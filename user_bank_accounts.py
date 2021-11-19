@@ -25,6 +25,11 @@ class BankAccount:
         if self.balance > 0:
             self.balance += (self.balance * self.interest_rate)
         return self
+    
+    @classmethod
+    def print_all_accounts(cls):
+        for account in cls.accounts:
+            account.display_account_info()
 
 class User: 
     def __init__(self, name):
@@ -41,6 +46,13 @@ class User:
     
     def display_user_balance(self):
         print(f"User: {self.name}, Balance: {self.account.balance}.")
+
+    def transfer_money(self,amount,user):
+        self.amount -= amount
+        user.amount += amount
+        self.display_user_balance()
+        user.display_user_balance()
+        return self
 
 richard = User("Richard")
 richard.make_deposit(100)
